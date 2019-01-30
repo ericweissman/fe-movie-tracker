@@ -5,9 +5,10 @@ import { fetchData } from '../../api/api'
 import { connect } from 'react-redux'
 import { getMovies } from '../../actions'
 import { NavLink, Route } from 'react-router-dom'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import  MovieArea  from '../MovieArea/MovieArea'
 import Login from '../Login/Login'
+import CreateUser from '../CreateUser/CreateUser'
 
 
 
@@ -29,10 +30,12 @@ class App extends Component {
         <header>
           <NavLink to='/' className='nav'>Show All Movies</NavLink>
           <NavLink to='/login' className='nav'>Login</NavLink>
+          <NavLink to='/signup' className='nav'>Signup</NavLink>
           <NavLink to='/favorites' className='nav' >View Favorites</NavLink>
         </header>
         <Route exact path='/' component={MovieArea}/>
         <Route path='/login' component={Login}/>
+        <Route path='/signup' component={CreateUser}/>
       </div>
     );
   }
@@ -47,5 +50,3 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
-
-//update connect by looking up with router once router is implemenated
