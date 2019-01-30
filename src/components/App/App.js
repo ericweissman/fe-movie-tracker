@@ -4,6 +4,7 @@ import { apiKey } from '../../utils/apiKey'
 import { fetchData } from '../../api/api'
 import { connect } from 'react-redux'
 import { getMovies } from '../../actions'
+import  MovieArea  from '../MovieArea/MovieArea'
 
 
 
@@ -15,13 +16,14 @@ class App extends Component {
   componentDidMount = async () => {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
     const movies = await fetchData(url)
+    //add cleaner function?
     this.props.getMovies(movies.results)
   }
 
   render() {
     return (
       <div className="App">
-
+        <MovieArea />
       </div>
     );
   }
