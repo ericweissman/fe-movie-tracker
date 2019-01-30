@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { loginUser } from '../../actions';
+import { fetchUser } from '../../api/api'
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: ''
     }
   }
@@ -18,16 +19,17 @@ class Login extends Component {
     })
   }
 
-  submitForm = (event) => {
+  submitForm = async (event) => {
     event.preventDefault();
-    this.props.handleSubmit(this.state)
+    const currentUser = await fetchUser(this.state)
+    this.props.handleSubmit(currentUser.data)
   }
 
   render() {
     return (
       <form onSubmit={this.submitForm}>
         <h2>Login</h2>
-        <input onChange={this.handleChange} name='username' value={this.state.username} placeholder='username'></input>
+        <input onChange={this.handleChange} name='email' value={this.state.email} placeholder='email'></input>
         <input onChange={this.handleChange} name='password' value={this.state.password} placeholder='password'></input>
         <button>Login</button>
         <a href=''>Sign Up</a>
