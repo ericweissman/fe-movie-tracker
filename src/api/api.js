@@ -7,8 +7,8 @@ export const fetchData = async (url) => {
   }
 }
 
-export const fetchUser = async (user) => {
-  const url = 'http://localhost:3000/api/users';
+export const postData = async (urlSuffix, user) => {
+  const url = 'http://localhost:3000/api/users' + urlSuffix;
   const response = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(user),
@@ -16,7 +16,6 @@ export const fetchUser = async (user) => {
       'Content-Type': 'application/json'
     }
   })
-
   if(response.ok) {
     let data = response.json();
     return data
