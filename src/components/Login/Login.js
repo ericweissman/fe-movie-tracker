@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { loginUser } from '../../actions';
-import { fetchUser } from '../../api/api'
+import { postData } from '../../api/api'
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      status: ''
     }
   }
   
@@ -20,9 +21,14 @@ class Login extends Component {
   }
 
   submitForm = async (event) => {
+    const { email, password } = this.state;
     event.preventDefault();
-    const currentUser = await fetchUser(this.state)
-    this.props.handleSubmit(currentUser.data)
+    try {
+      const currentUser = await postData('', { email, password })
+      this.props.handleSubmit(currentUser.data)
+    } catch {
+      this.setState({ status: 'error' })
+    }
   }
 
   render() {
@@ -30,8 +36,9 @@ class Login extends Component {
       <form onSubmit={this.submitForm}>
         <h2>Login</h2>
         <input onChange={this.handleChange} name='email' value={this.state.email} placeholder='email'></input>
-        <input onChange={this.handleChange} name='password' value={this.state.password} placeholder='password'></input>
+        <input onChange={this.handleChange} name='password' type='password' value={this.state.password} placeholder='password'></input>
         <button>Login</button>
+        {this.state.status === 'error' && <p>Email and password do not match</p> }
         <a href=''>Sign Up</a>
       </form>
     )
