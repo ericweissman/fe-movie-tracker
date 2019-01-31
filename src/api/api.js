@@ -7,11 +7,11 @@ export const fetchData = async (url) => {
   }
 }
 
-export const postData = async (urlSuffix, user) => {
+export const postData = async (urlSuffix, data) => {
   const url = 'http://localhost:3000/api/users' + urlSuffix;
   const response = await fetch(url, {
     method: 'POST',
-    body: JSON.stringify(user),
+    body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json'
     }

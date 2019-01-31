@@ -4,6 +4,8 @@ export const userReducer = (state = {}, action) => {
       return action.user
     case 'LOGOUT_USER':
       return {}
+    case 'POPULATE_FAVORITES':
+      return {...state, favorites: action.favorites}
     default:
       return state
   }

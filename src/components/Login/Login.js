@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { loginUser } from '../../actions';
-import { postData } from '../../api/api'
+import { loginUser, populateFavorites } from '../../actions';
+import { fetchData, postData } from '../../api/api'
 import { Redirect, Link } from 'react-router-dom';
 
 export class Login extends Component {
@@ -21,12 +21,25 @@ export class Login extends Component {
     })
   }
 
+  getFavorites = async (id) => {
+    const url = `http://localhost:3000/api/users/${id}/favorites`
+    let userFavorites = await fetchData(url)
+    userFavorites = userFavorites.data.map(favorite => {
+      return favorite.movie_id
+    })
+    console.log(userFavorites)
+    this.props.populateFavorites(userFavorites)
+  }
+
+
   handleSubmit = async (event) => {
     const { email, password } = this.state;
     event.preventDefault();
     try {
       const currentUser = await postData('', { email, password })
       this.props.loginUser(currentUser.data)
+      console.log(currentUser)
+      this.getFavorites(currentUser.data.id)
       this.setState({ status: currentUser.status })
     } catch {
       this.setState({ status: 'error' })
@@ -51,7 +64,9 @@ export class Login extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  loginUser: (user) => dispatch(loginUser(user))
+  loginUser: (user) => dispatch(loginUser(user)),
+  populateFavorites: (favorites) => dispatch(populateFavorites(favorites))
+
 })
 
 export default connect(null, mapDispatchToProps)(Login)
