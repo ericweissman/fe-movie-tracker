@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard'
 
-const MovieArea = (props) => {
+export const MovieArea = (props) => {
   return props.movies.map((movie) => {
     return(
       <MovieCard {...movie}/>
@@ -10,7 +10,7 @@ const MovieArea = (props) => {
   })
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   movies: state.movies
 })
 
