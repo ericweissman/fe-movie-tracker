@@ -13,7 +13,7 @@ import { userInfo } from 'os';
 
 
 
-class App extends Component {
+export class App extends Component {
   constructor() {
     super()
   }
@@ -42,12 +42,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   movies: state.movies,
   user: state.user
 })
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   getMovies: (movies) => dispatch(getMovies(movies)),
   logoutUser: () => dispatch(logoutUser())
 
