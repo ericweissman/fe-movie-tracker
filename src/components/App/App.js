@@ -10,6 +10,8 @@ import  MovieArea  from '../MovieArea/MovieArea'
 import Login from '../Login/Login'
 import CreateUser from '../CreateUser/CreateUser'
 import { userInfo } from 'os';
+import { Header } from '../Header/Header'
+import '../../index.scss'
 
 
 
@@ -27,13 +29,7 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
-          <NavLink to='/' className='nav'>Show All Movies</NavLink>
-          <NavLink to='/login' className='nav'>Login</NavLink>
-          <NavLink to='/signup' className='nav'>Signup</NavLink>
-          <NavLink to='/favorites' className='nav' >View Favorites</NavLink>
-          {this.props.user.name && <button onClick={this.props.logoutUser}>LOG OUT</button>}
-        </header>
+        <Header logoutUser={this.props.logoutUser} user={this.props.user}/>
         <Route exact path='/' component={MovieArea}/>
         <Route path='/login' component={Login}/>
         <Route path='/signup' component={CreateUser}/>
