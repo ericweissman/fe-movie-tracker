@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { postData } from "../../api/api";
+import { Redirect } from 'react-router-dom';
 
 class CreateUser extends Component {
   constructor() {
@@ -44,6 +45,7 @@ class CreateUser extends Component {
         <input onChange={this.handleChange} name="passwordCheck" value={passwordCheck} placeholder='confirm password'/>
         {password !== passwordCheck && <p>Passwords do not match</p> }
         {status === 'error' && <p>Email is taken</p>}
+        {status === 'success' && <Redirect to='/login' />}
         <button>SUBMIT</button>
       </form>
     );

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { loginUser } from '../../actions';
 import { postData } from '../../api/api'
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Login extends Component {
     try {
       const currentUser = await postData('', { email, password })
       this.props.handleSubmit(currentUser.data)
+      this.setState({ status: currentUser.status })
     } catch {
       this.setState({ status: 'error' })
     }
@@ -39,6 +41,7 @@ class Login extends Component {
         <input onChange={this.handleChange} name='password' type='password' value={this.state.password} placeholder='password'></input>
         <button>Login</button>
         {this.state.status === 'error' && <p>Email and password do not match</p> }
+        {this.state.status === 'success' && <Redirect to='/' /> }
         <a href=''>Sign Up</a>
       </form>
     )
