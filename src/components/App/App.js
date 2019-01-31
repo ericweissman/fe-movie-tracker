@@ -3,12 +3,13 @@ import './App.scss';
 import { apiKey } from '../../utils/apiKey'
 import { fetchData } from '../../api/api'
 import { connect } from 'react-redux'
-import { getMovies } from '../../actions'
+import { getMovies, logoutUser } from '../../actions'
 import { NavLink, Route } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import  MovieArea  from '../MovieArea/MovieArea'
 import Login from '../Login/Login'
 import CreateUser from '../CreateUser/CreateUser'
+import { userInfo } from 'os';
 
 
 
@@ -20,7 +21,6 @@ class App extends Component {
   componentDidMount = async () => {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
     const movies = await fetchData(url)
-    //add cleaner function?
     this.props.getMovies(movies.results)
   }
 
@@ -32,6 +32,7 @@ class App extends Component {
           <NavLink to='/login' className='nav'>Login</NavLink>
           <NavLink to='/signup' className='nav'>Signup</NavLink>
           <NavLink to='/favorites' className='nav' >View Favorites</NavLink>
+          {this.props.user.name && <button onClick={this.props.logoutUser}>LOG OUT</button>}
         </header>
         <Route exact path='/' component={MovieArea}/>
         <Route path='/login' component={Login}/>
@@ -42,11 +43,14 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  movies: state.movies
+  movies: state.movies,
+  user: state.user
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getMovies: (movies) => dispatch(getMovies(movies))
+  getMovies: (movies) => dispatch(getMovies(movies)),
+  logoutUser: () => dispatch(logoutUser())
+
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
