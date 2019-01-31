@@ -22,8 +22,18 @@ export class App extends Component {
 
   componentDidMount = async () => {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
-    const movies = await fetchData(url)
-    this.props.getMovies(movies.results)
+    let movies = await fetchData(url)
+    movies = movies.results.map(movie => {
+      return {
+        movie_id: movie.id,
+        title: movie.title,
+        poster_path: movie.poster_path,
+        release_date: movie.release_date,
+        vote_average: movie.vote_average,
+        overview: movie.overview
+      }
+    })
+    this.props.getMovies(movies)
   }
 
   render() {
@@ -45,8 +55,7 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   getMovies: (movies) => dispatch(getMovies(movies)),
-  logoutUser: () => dispatch(logoutUser())
-
+  logoutUser: () => dispatch(logoutUser()),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
