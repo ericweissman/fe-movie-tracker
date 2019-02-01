@@ -4,21 +4,21 @@ import { apiKey } from '../../utils/apiKey'
 import { fetchData } from '../../api/api'
 import { connect } from 'react-redux'
 import { getMovies, logoutUser } from '../../actions'
-import { NavLink, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import  MovieArea  from '../MovieArea/MovieArea'
 import Login from '../Login/Login'
 import CreateUser from '../CreateUser/CreateUser'
-import { userInfo } from 'os';
+// import { userInfo } from 'os';
 import { Header } from '../Header/Header'
 import '../../index.scss'
 
 
 
 export class App extends Component {
-  constructor() {
-    super()
-  }
+  // constructor() {
+  //   super()
+  // }
 
   componentDidMount = async () => {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
