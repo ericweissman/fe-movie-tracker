@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { loginUser, populateFavorites } from '../../actions';
 import { fetchData, postData } from '../../api/api'
 import { Redirect, Link } from 'react-router-dom';
+import { getFavorites } from '../../utils/helper'
 
 export class Login extends Component {
   constructor(props) {
@@ -21,14 +22,9 @@ export class Login extends Component {
     })
   }
 
-  getFavorites = async (id) => {
-    const url = `http://localhost:3000/api/users/${id}/favorites`
-    let userFavorites = await fetchData(url)
-    userFavorites = userFavorites.data.map(favorite => {
-      return favorite.movie_id
-    })
-    console.log(userFavorites)
-    this.props.populateFavorites(userFavorites)
+ handleFavorites = async (id) => {
+  let favoriteMovieIDs = await getFavorites(id)
+  this.props.populateFavorites(favoriteMovieIDs)
   }
 
 
@@ -37,9 +33,9 @@ export class Login extends Component {
     event.preventDefault();
     try {
       const currentUser = await postData('', { email, password })
+      console.log(currentUser.data)
       this.props.loginUser(currentUser.data)
-      console.log(currentUser)
-      this.getFavorites(currentUser.data.id)
+      this.handleFavorites(currentUser.data.id)
       this.setState({ status: currentUser.status })
     } catch {
       this.setState({ status: 'error' })

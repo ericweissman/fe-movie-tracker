@@ -1,33 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard'
-import { addFavorite } from '../../actions'
-import { postData } from '../../api/api';
+import { populateFavorites } from '../../actions'
+import { postData, fetchData } from '../../api/api';
+import { getFavorites } from '../../utils/helper'
 
-export const MovieArea = (props) => {
-  return props.movies.map((movie) => {
-    return(
-      <MovieCard movie={movie} handleFavorite={handleFavorite} user={props.user}/>
-    )
-  })
-}
+export class MovieArea extends Component  {
 
-const handleFavorite = async (movie, user) => {
-  console.log(movie)
-  if (!user.favorites.includes(movie.movie_id) && typeof user.id === 'number') {
-    await postData('/favorites/new', {...movie, user_id: user.id})
-  } else {
-    console.log('you are not logged in')
+  handleFavorite = async (movie, user) => {
+    if (!user.favorites.includes(movie.movie_id)) {
+      await postData('/favorites/new', { ...movie, user_id: user.id });
+      let userFavorites = await getFavorites(user.id)
+      this.props.populateFavorites(userFavorites)
+    } else {
+      console.log('you are not logged in')
+    }
   }
+
+  render() {
+    if (this.props.location.pathname === '/favorites' && typeof this.props.user.id === 'number') {
+      const favorites = this.props.movies.filter((movie) => {
+        return this.props.user.favorites.includes(movie.movie_id)
+      });
+      return favorites.map((movie) => {
+        return <MovieCard key={movie.movie_id} movie={movie} handleFavorite={this.handleFavorite} user={this.props.user} />
+      })
+    }
+    return this.props.movies.map((movie) => {
+      return (
+        <MovieCard key={movie.movie_id} movie={movie} handleFavorite={this.handleFavorite} user={this.props.user} />
+      )
+    })
+  }
+
+
 }
+
+
 
 export const mapStateToProps = (state) => ({
   movies: state.movies,
-  user: state.user
+  user: state.user,
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  addFavorite: (movie) => dispatch(addFavorite(movie))
+  populateFavorites: (favorites) => dispatch(populateFavorites(favorites))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieArea)
