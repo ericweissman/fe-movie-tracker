@@ -23,5 +23,6 @@ const MovieCard = (props) => {
     </div>
   )
 }
+      //conditionally render button (Add or remove favorite) checking against the vavorties in user and current movie.id
 
 export default MovieCard;
