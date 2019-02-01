@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { loginUser, populateFavorites } from '../../actions';
-import { fetchData, postData } from '../../api/api'
+import { postData } from '../../api/api'
 import { Redirect, Link } from 'react-router-dom';
 import { getFavorites } from '../../utils/helper'
 
@@ -33,7 +33,6 @@ export class Login extends Component {
     event.preventDefault();
     try {
       const currentUser = await postData('', { email, password })
-      console.log(currentUser.data)
       this.props.loginUser(currentUser.data)
       this.handleFavorites(currentUser.data.id)
       this.setState({ status: currentUser.status })
@@ -62,7 +61,6 @@ export class Login extends Component {
 export const mapDispatchToProps = (dispatch) => ({
   loginUser: (user) => dispatch(loginUser(user)),
   populateFavorites: (favorites) => dispatch(populateFavorites(favorites))
-
 })
 
 export default connect(null, mapDispatchToProps)(Login)
