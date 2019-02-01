@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const MovieCard = (props) => {
   const { title, id: movie_id, poster_path, release_date, vote_average, overview } = props.movie;
@@ -11,7 +12,14 @@ const MovieCard = (props) => {
       <p>{release_date}</p>
       <p>{vote_average}</p>
       <p>{overview}</p>
-      <button onClick={() => props.handleFavorite(props.movie, props.user)}>FAVORITE</button>
+      {typeof props.user.id === 'number' && (
+        <button onClick={() => props.handleFavorite(props.movie, props.user)}>FAVORITE</button>
+      )}
+      {typeof props.user.id !== 'number' && (
+        <Link to='/login'>
+          <button>FAVORITE</button>
+        </Link>
+      )}
     </div>
   )
 }
