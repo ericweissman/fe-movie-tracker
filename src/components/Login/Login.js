@@ -22,6 +22,7 @@ export class Login extends Component {
     })
   }
 
+
  handleFavorites = async (id) => {
   let favoriteMovieIDs = await getFavorites(id)
   this.props.populateFavorites(favoriteMovieIDs)
@@ -34,7 +35,7 @@ export class Login extends Component {
     try {
       const currentUser = await postData('', { email, password })
       this.props.loginUser(currentUser.data)
-      this.handleFavorites(currentUser.data.id)
+      await this.handleFavorites(currentUser.data.id)
       this.setState({ status: currentUser.status })
     } catch {
       this.setState({ status: 'error' })

@@ -23,3 +23,20 @@ export const postData = async (urlSuffix, data) => {
     throw Error(`Error fetching, ${response.status}`)
   }
 }
+
+export const deleteData = async (urlSuffix, data) => {
+  const url = 'http://localhost:3000/api/users' + urlSuffix;
+  const response = await fetch(url, {
+    method: 'DELETE',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  if (response.ok) {
+    let data = response.json();
+    return data
+  } else {
+    throw Error(`Error fetching, ${response.status}`)
+  }
+}
