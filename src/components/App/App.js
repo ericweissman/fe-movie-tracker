@@ -43,6 +43,7 @@ export class App extends Component {
         <Route exact path='/' component={MovieArea}/>
         <Route path='/login' component={Login}/>
         <Route path='/signup' component={CreateUser}/>
+        <Route path='/favorites' component={MovieArea}/>
       </div>
     );
   }
