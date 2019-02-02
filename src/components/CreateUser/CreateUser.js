@@ -29,10 +29,14 @@ class CreateUser extends Component {
     try {
       if (password === passwordCheck) {
         var response = await postData("/new", { name, email, password });
-        const currentUser = await postData('', { email, password })
-        this.props.loginUser(currentUser.data)
+        let currentUser = await postData('', { email, password })
+        currentUser = {
+          id: currentUser.data.id,
+          name: currentUser.data.name,
+          favorites: []
+        }
+        this.props.loginUser(currentUser)
         this.setState({ status: response.status })
-        // this.props.loginUser()
       }
     } catch {
         this.setState({ status: "error"})
