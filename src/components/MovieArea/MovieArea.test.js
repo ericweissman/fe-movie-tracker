@@ -11,6 +11,7 @@ describe('MovieArea', () => {
 
   describe('mapStateToProps', () => {
     it('should return an object with the movies in an array', () => {
+    
       const movies = [{
         vote_count: 3078,
         id: 297802,
@@ -26,7 +27,7 @@ describe('MovieArea', () => {
         movies,
         user: {}
       }
-      const expected = { movies }
+      const expected = { movies, user: {} }
       const mappedProps = mapStateToProps(mockState);
       expect(mappedProps).toEqual(expected)
     })
