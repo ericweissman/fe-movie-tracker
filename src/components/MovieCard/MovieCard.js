@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const MovieCard = (props) => {
-  console.log(props.movie)
   const { title, movie_id, poster_path, release_date, vote_average, overview } = props.movie;
   const movieImageUrl = "https://image.tmdb.org/t/p/w500"
   return (
@@ -29,8 +28,8 @@ const MovieCard = (props) => {
   )
 }
 
-      //conditionally render button (Add or remove favorite) checking against the vavorties in user and current movie.id
 const mapStateToProps = (state) => ({
   user: state.user
 })
+
 export default connect(mapStateToProps)(MovieCard);
