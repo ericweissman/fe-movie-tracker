@@ -15,12 +15,12 @@ export class Login extends Component {
     }
   }
   
-  handleChange = (event) => {
-    const { name, value } = event.target
-    this.setState({
-      [name]: value
-    })
-  }
+handleChange = (event) => {
+  const { name, value } = event.target
+  this.setState({
+    [name]: value
+  })
+}
 
 
  handleFavorites = async (id) => {
@@ -29,27 +29,26 @@ export class Login extends Component {
   }
 
 
-  handleSubmit = async (event) => {
-    const { email, password } = this.state;
-    event.preventDefault();
-    try {
-      let currentUser = await postData('', { email, password })
-      currentUser = {
-        id: currentUser.data.id,
-        name: currentUser.data.name,
-        favorites: [],
-        status: currentUser.status
-      }
-      this.props.loginUser(currentUser)
-      await this.handleFavorites(currentUser.id)
-      this.setState({ status: currentUser.status })
-    } catch {
-      this.setState({ status: 'error' })
+handleSubmit = async (event) => {
+  const { email, password } = this.state;
+  event.preventDefault();
+  try {
+    let currentUser = await postData('', { email, password })
+    currentUser = {
+      id: currentUser.data.id,
+      name: currentUser.data.name,
+      favorites: [],
+      status: currentUser.status
     }
+    this.props.loginUser(currentUser)
+    await this.handleFavorites(currentUser.id)
+    this.setState({ status: currentUser.status })
+  } catch {
+    this.setState({ status: 'error' })
   }
+}
 
   render() {
-
     const { email, password, status } = this.state
     return (
       <form onSubmit={this.handleSubmit}>

@@ -21,4 +21,10 @@ describe('userReducer', () => {
     const result = userReducer(undefined, actions.logoutUser())
     expect(result).toEqual(expected)
   });
+
+  it('should return the original state plus the favorites when we populate favorites', () => {
+    const expected = { name: 'Hill', id: 2, status: 'success', favorites: [2,3] } 
+    const result = userReducer(expected, actions.populateFavorites)
+    expect(result).toEqual(expected)
+  })
 })

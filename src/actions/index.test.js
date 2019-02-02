@@ -38,4 +38,14 @@ describe('actions', () => {
     const result = actions.logoutUser()
     expect(result).toEqual(expected)
   });
+
+  it('should return a type of POPULATE_FAVORIES', () => {
+    const favorites = [2, 3]
+    const expected = {
+      type: 'POPULATE_FAVORITES',
+      favorites
+    }
+    const result = actions.populateFavorites(favorites)
+    expect(result).toEqual(expected)
+  })
 })
