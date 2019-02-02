@@ -33,9 +33,15 @@ export class Login extends Component {
     const { email, password } = this.state;
     event.preventDefault();
     try {
-      const currentUser = await postData('', { email, password })
-      this.props.loginUser(currentUser.data)
-      await this.handleFavorites(currentUser.data.id)
+      let currentUser = await postData('', { email, password })
+      currentUser = {
+        id: currentUser.data.id,
+        name: currentUser.data.name,
+        favorites: [],
+        status: currentUser.status
+      }
+      this.props.loginUser(currentUser)
+      await this.handleFavorites(currentUser.id)
       this.setState({ status: currentUser.status })
     } catch {
       this.setState({ status: 'error' })
