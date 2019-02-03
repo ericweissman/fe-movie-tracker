@@ -1,0 +1,11 @@
+.movie-details {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  h3 {
+
+  }
+  img {
+    height: 200px;
+    width: 125px;;
+  }
+}
