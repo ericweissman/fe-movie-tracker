@@ -2,13 +2,15 @@ import { Login, mapDispatchToProps } from './Login'
 import React from 'react'
 import { shallow } from 'enzyme';
 import { loginUser, populateFavorites } from '../../actions';
-import { postData } from '../../api/api';
-import { getFavorites } from '../../utils/helper'
+// import { postData } from '../../api/api';
+import * as api from '../../api/api';
+// import { getFavorites } from '../../utils/helper'
+import * as helpers from '../../utils/helper'
 
 jest.mock('../../api/api')
-jest.mock('../../utils/helper')
+// jest.mock('../../utils/helper')
 // jest.mock('../../actions')
-
+// loginUser = jest.fn();
 const loginUserMock = jest.fn();
 const mockFavoriteIDs = [2, 3]
 // getFavorites = jest.fn().mockImplementation(() => Promise.resolve(
@@ -40,46 +42,50 @@ describe('Login', () => {
   })
 
   describe('handleSubmit', () => {
+    let wrapper;
+    const loginUserMock = jest.fn();
     beforeEach(() => {
+      wrapper = shallow(<Login loginUser={loginUserMock}/>)
       const mockEvent = { preventDefault: jest.fn() }
       wrapper.find('form').simulate('submit', mockEvent)
     });
 
     it('should call postData when the form is submitted', () => {
-      expect(postData).toHaveBeenCalled()
+      expect(api.postData).toHaveBeenCalled()
     });
 
-    it.skip('should call loginUser with the correct params', () => {
+    it('should call loginUser with the correct params', async () => {
+      const loginUserMock = jest.fn();
+      wrapper = shallow(<Login loginUser={loginUserMock} />)
       const mockCurrentUser = {name: 'hill', id: 2, favorites: [], status: 'success'};
-      wrapper.setProps({ loginUser: loginUserMock })
-      expect(loginUserMock).toHaveBeenCalled();
+      api.postData = jest.fn(() => mockCurrentUser)
+      const mockEvent = { preventDefault: jest.fn() }
+      // await wrapper.find('form').simulate('submit', mockEvent)
+      await wrapper.instance().handleSubmit(mockEvent)
+      // wrapper.setProps({ loginUser: loginUserMock })
+      await expect(wrapper.props('loginUser')).toEqual(loginUserMock);
       expect(loginUserMock).toHaveBeenCalledWith(mockCurrentUser)
     });
 
     it('should set state with the correct status', () => {
 
-    })
+    });
   })
 
   describe('handleFavorites', () => {
     it('should call get favorites with the correct params', async () => {
+      helpers.getFavorites = jest.fn(() => mockFavoriteIDs)
       const mockId = 2;
       wrapper.setProps({populateFavorites: populateFavoritesMock})
       wrapper.instance().handleFavorites(mockId)
-      await expect(getFavorites).toHaveBeenCalledWith(mockId)
+      await expect(helpers.getFavorites).toHaveBeenCalledWith(mockId)
     });
 
-    it('should call populate favorites with the correct params', () => {
-      //wrapper setProps with mock of populateFavorites
-      //make mockFAvoriteMovieIDs
-      //run wrapper.instance of handleFavorites
-      //expect populate favorites to have been called with mocked IDs
-      //need to mock getFavorites so it resolves to array of ideas
-
-
+    it('should call populate favorites with the correct params', async () => {
+      helpers.getFavorites = jest.fn(() => mockFavoriteIDs)
       const mockId = 2;
       wrapper.setProps({ populateFavorites: populateFavoritesMock });
-      wrapper.instance().handleFavorites(mockId);
+      await wrapper.instance().handleFavorites(mockId);
       expect(populateFavoritesMock).toHaveBeenCalled()
       expect(populateFavoritesMock).toHaveBeenCalledWith(mockFavoriteIDs)
       
