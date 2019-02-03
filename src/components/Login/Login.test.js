@@ -57,14 +57,15 @@ describe('Login', () => {
     it('should call loginUser with the correct params', async () => {
       const loginUserMock = jest.fn();
       wrapper = shallow(<Login loginUser={loginUserMock} />)
-      const mockCurrentUser = {name: 'hill', id: 2, favorites: [], status: 'success'};
-      api.postData = jest.fn(() => mockCurrentUser)
-      const mockEvent = { preventDefault: jest.fn() }
-      // await wrapper.find('form').simulate('submit', mockEvent)
-      await wrapper.instance().handleSubmit(mockEvent)
       // wrapper.setProps({ loginUser: loginUserMock })
-      await expect(wrapper.props('loginUser')).toEqual(loginUserMock);
-      expect(loginUserMock).toHaveBeenCalledWith(mockCurrentUser)
+      const mockCurrentUser = {name: 'hill', id: 2, favorites: [], status: 'success'};
+      api.postData = await jest.fn(() => mockCurrentUser)
+      const mockEvent = { preventDefault: {} }
+      // await wrapper.find('form').simulate('submit', mockEvent)
+      wrapper.instance().handleSubmit(mockEvent)
+      console.log(wrapper.instance().props)
+      // await expect(wrapper.props('loginUser')).toEqual(loginUserMock);
+      expect(wrapper.instance().props.loginUser).toHaveBeenCalledWith(mockCurrentUser)
     });
 
     it('should set state with the correct status', () => {
