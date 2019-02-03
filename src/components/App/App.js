@@ -10,7 +10,6 @@ import  MovieArea  from '../MovieArea/MovieArea'
 import Login from '../Login/Login'
 import CreateUser from '../CreateUser/CreateUser'
 import MovieDetails from '../MovieDetails/MovieDetails'
-// import { userInfo } from 'os';
 import { Header } from '../Header/Header'
 import '../../index.scss'
 
