@@ -9,6 +9,7 @@ import { withRouter } from 'react-router'
 import  MovieArea  from '../MovieArea/MovieArea'
 import Login from '../Login/Login'
 import CreateUser from '../CreateUser/CreateUser'
+import MovieDetails from '../MovieDetails/MovieDetails'
 // import { userInfo } from 'os';
 import { Header } from '../Header/Header'
 import '../../index.scss'
@@ -41,9 +42,19 @@ export class App extends Component {
       <div className="App">
         <Header logoutUser={this.props.logoutUser} user={this.props.user}/>
         <Route exact path='/' component={MovieArea}/>
-        <Route path='/login' component={Login}/>
-        <Route path='/signup' component={CreateUser}/>
-        <Route path='/favorites' component={MovieArea}/>
+        <Route exact path='/login' component={Login}/>
+        <Route exact path='/signup' component={CreateUser}/>
+        <Route exact path='/favorites' component={MovieArea}/>
+
+        <Route path='/movies/:id' render={ ({ match }) => {
+          const { id } = match.params
+          const movie = this.props.movies.find(movie => movie.movie_id === parseInt(id))
+          if(movie) {
+            return (
+              <MovieDetails {...movie} />
+            )
+          }
+        }} />
       </div>
     );
   }
