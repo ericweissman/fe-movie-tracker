@@ -19,7 +19,7 @@ const MovieCard = ({movie, user, handleDelete, handleFavorite}) => {
       {typeof user.id !== 'number' && (
         <Link to='/login'>
           <button>FAVORITE</button>
-        </Link>
+        </Link> 
       )}
     </div>
   )

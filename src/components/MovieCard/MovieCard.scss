@@ -1,3 +1,16 @@
 .movie-card-div {
-  border: 3px solid tomato;
+    height: 500px;
+    width: 325px;
+    border-radius: 15px;
+
+  img {
+    height: 500px;
+    width: 325px;
+    border-radius: 15px;
+  }
+  button {
+    position: relative;
+    z-index: 1;
+    bottom: 50px;
+  }
 }
