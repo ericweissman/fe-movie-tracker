@@ -30,23 +30,29 @@ export class MovieArea extends Component {
       const favorites = this.props.movies.filter(movie => {
         return this.props.user.favorites.includes(movie.movie_id);
       });
-      return favorites.map(movie => {
+      const favoriteCards =  favorites.map(movie => {
         return (
           <MovieCard
             key={movie.movie_id}
             movie={movie}
+            user={this.props.user}
             handleFavorite={this.handleFavorite}
             handleDelete={this.handleDelete}
           />
         );
       });
+      return (
+        <div className='movie-area'>
+          { favoriteCards }
+        </div>
+      )
     } else if (
       this.props.location.pathname === "/favorites" &&
       !this.props.user.favorites
     ) {
       return <div>NO FAVORITES</div>;
     }
-    return this.props.movies.map(movie => {
+    const allMovies = this.props.movies.map(movie => {
       return (
         <MovieCard
           key={movie.movie_id}
@@ -57,6 +63,11 @@ export class MovieArea extends Component {
         />
       );
     });
+    return (
+      <div className='movie-area'>
+        {allMovies}
+      </div>
+    )
   }
 }
 

@@ -4,6 +4,7 @@ import { loginUser, populateFavorites } from '../../actions';
 import { postData } from '../../api/api'
 import { Redirect, Link } from 'react-router-dom';
 import { getFavorites } from '../../utils/helper'
+import { MovieArea } from '../MovieArea/MovieArea';
 
 export class Login extends Component {
   constructor(props) {
@@ -59,6 +60,7 @@ handleSubmit = async (event) => {
         {status === 'error' && <p>Email and password do not match</p> }
         {status === 'success' && <Redirect to='/' /> }
         <Link to='/signup'>Sign Up</Link>
+        {/* <MovieArea /> */}
       </form>
     )
   }
