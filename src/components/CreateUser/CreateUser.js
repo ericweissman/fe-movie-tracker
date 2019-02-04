@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { loginUser, populateFavorites } from '../../actions';
 
-class CreateUser extends Component {
+export class CreateUser extends Component {
   constructor() {
     super();
     this.state = {
