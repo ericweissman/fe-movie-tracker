@@ -25,49 +25,56 @@ export class MovieArea extends Component {
     this.props.populateFavorites(userFavorites);
   };
 
-  render() {
-    if (this.props.location.pathname === "/favorites" && this.props.user.favorites) {
-      const favorites = this.props.movies.filter(movie => {
-        return this.props.user.favorites.includes(movie.movie_id);
-      });
-      const favoriteCards =  favorites.map(movie => {
-        return (
-          <MovieCard
-            key={movie.movie_id}
-            movie={movie}
-            user={this.props.user}
-            handleFavorite={this.handleFavorite}
-            handleDelete={this.handleDelete}
-          />
-        );
-      });
+  renderFavoriteCards = (movies, user) => {
+    const favorites = movies.filter(movie => {
+      return user.favorites.includes(movie.movie_id);
+    });
+    const favoriteCards = favorites.map(movie => {
       return (
-        <div className='movie-area'>
-          { favoriteCards }
-        </div>
-      )
-    } else if (
-      this.props.location.pathname === "/favorites" &&
-      !this.props.user.favorites
-    ) {
-      return <div>NO FAVORITES</div>;
-    }
-    const allMovies = this.props.movies.map(movie => {
+        <MovieCard
+          key={movie.movie_id}
+          movie={movie}
+          user={user}
+          handleFavorite={this.handleFavorite}
+          handleDelete={this.handleDelete}
+        />
+      );
+    });
+    return favoriteCards;
+  };
+
+  renderAllMovies = (movies, user) => {
+    const allMovies = movies.map(movie => {
       return (
         <MovieCard
           key={movie.movie_id}
           movie={movie}
           handleFavorite={this.handleFavorite}
-          user={this.props.user}
+          user={user}
           handleDelete={this.handleDelete}
         />
       );
     });
+    return allMovies;
+  };
+
+  render() {
+    const { location, user, movies } = this.props;
     return (
-      <div className='movie-area'>
-        {allMovies}
+      <div>
+        {location.pathname === "/favorites" && user.favorites && (
+          <div className="movie-area">
+            {this.renderFavoriteCards(movies, user)}
+          </div>
+        )}
+        {location.pathname === "/favorites" && !user.favorites && (
+          <div className="movie-area">no favorites</div>
+        )}
+        {location.pathname === "/" && (
+          <div className="movie-area">{this.renderAllMovies(movies, user)}</div>
+        )}
       </div>
-    )
+    );
   }
 }
 
@@ -80,4 +87,7 @@ export const mapDispatchToProps = dispatch => ({
   populateFavorites: favorites => dispatch(populateFavorites(favorites))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieArea);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MovieArea);
