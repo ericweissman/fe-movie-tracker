@@ -1,5 +1,12 @@
+@font-face {
+  font-family: 'Cereal';
+  src: url(./AirbnbCereal-Black.ttf)
+}
+
 .header {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  font-family: 'Cereal';
+  text-transform: uppercase;
 }

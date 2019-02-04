@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
-import './App.scss';
-import { apiKey } from '../../utils/apiKey'
-import { fetchData } from '../../api/api'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getMovies, logoutUser } from '../../actions'
 import { Route } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import  MovieArea  from '../MovieArea/MovieArea'
+import './App.scss'
+import '../../index.scss'
+import { apiKey } from '../../utils/apiKey'
+import { fetchData } from '../../api/api'
+import { getMovies, logoutUser } from '../../actions'
+import { Header } from '../Header/Header'
+import MovieArea from '../MovieArea/MovieArea'
+import MovieDetails from '../MovieDetails/MovieDetails'
 import Login from '../Login/Login'
 import CreateUser from '../CreateUser/CreateUser'
-import MovieDetails from '../MovieDetails/MovieDetails'
-import { Header } from '../Header/Header'
-import '../../index.scss'
-
-
 
 export class App extends Component {
   // constructor() {
@@ -21,9 +19,9 @@ export class App extends Component {
   // }
 
   componentDidMount = async () => {
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
     let movies = await fetchData(url)
-    movies = movies.results.map(movie => {
+    movies = movies.results.map((movie) => {
       return {
         movie_id: movie.id,
         title: movie.title,
@@ -37,25 +35,28 @@ export class App extends Component {
   }
 
   render() {
+    const { logoutUser, movies, user } = this.props
     return (
-      <div className="App">
-        <Header logoutUser={this.props.logoutUser} user={this.props.user}/>
-        <Route exact path='/' component={MovieArea}/>
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/signup' component={CreateUser}/>
-        <Route exact path='/favorites' component={MovieArea}/>
-
-        <Route path='/movies/:id' render={ ({ match }) => {
-          const { id } = match.params
-          const movie = this.props.movies.find(movie => movie.movie_id === parseInt(id))
-          if(movie) {
-            return (
-              <MovieDetails {...movie} />
-            )
-          }
-        }} />
+      <div className='App'>
+        <Header logoutUser={logoutUser} user={user} />
+        <Route exact path='/' component={MovieArea} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/signup' component={CreateUser} />
+        <Route exact path='/favorites' component={MovieArea} />
+        <Route
+          path='/movies/:id'
+          render={({ match }) => {
+            const { id } = match.params
+            const movie = movies.find((movie) => {
+              return movie.movie_id === parseInt(id)
+            })
+            if (movie) {
+              return <MovieDetails {...movie} />
+            }
+          }}
+        />
       </div>
-    );
+    )
   }
 }
 
@@ -66,7 +67,7 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   getMovies: (movies) => dispatch(getMovies(movies)),
-  logoutUser: () => dispatch(logoutUser()),
+  logoutUser: () => dispatch(logoutUser())
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

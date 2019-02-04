@@ -1,16 +1,17 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-export const Header = (props) => {
+export const Header = ({ logoutUser, user }) => {
   return (
     <header className='header'>
-      <h1>MovieTracker</h1>
+      <h1>Movie Tracker</h1>
       <nav>
         <NavLink to='/' className='nav'>Show All Movies</NavLink>
-        <NavLink to='/login' className='nav'>Login</NavLink>
-        <NavLink to='/signup' className='nav'>Signup</NavLink>
-        <NavLink to='/favorites' className='nav' >View Favorites</NavLink>
-        {props.user.name && <button onClick={props.logoutUser}>LOG OUT</button>}
+        {!user.id && <NavLink to='/login' className='nav'>Login</NavLink>}
+        {!user.id && <NavLink to='/signup' className='nav'>Signup</NavLink>}
+        {!user.id && <NavLink to='/login' className='nav'>View Favorites</NavLink>}
+        {user.id && <NavLink to='/favorites' className='nav'>View Favorites</NavLink>}
+        {user.id && <button onClick={logoutUser}>LOG OUT</button>}
       </nav>
     </header>
   )
