@@ -52,15 +52,27 @@ handleSubmit = async (event) => {
   render() {
     const { email, password, status } = this.state
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="login-form">
         <h2>Login</h2>
-        <input onChange={this.handleChange} name='email' value={email} placeholder='email'></input>
-        <input onChange={this.handleChange} name='password' type='password' value={password} placeholder='password'></input>
+        <input
+          onChange={this.handleChange}
+          name="email"
+          value={email}
+          placeholder="email"
+        />
+        <input
+          onChange={this.handleChange}
+          name="password"
+          type="password"
+          value={password}
+          placeholder="password"
+        />
         <button>Login</button>
-        {status === 'error' && <p>Email and password do not match</p> }
-        {status === 'success' && <Redirect to='/' /> }
-        <Link to='/signup'>Sign Up</Link>
-        {/* <MovieArea /> */}
+        {status === "error" && <p>Email and password do not match</p>}
+        {status === "success" && <Redirect to="/" />}
+        <Link className="link" to="/signup">
+          Sign Up
+        </Link>
       </form>
     )
   }
