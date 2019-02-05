@@ -34,7 +34,7 @@ export const Header = ({ logoutUser, user }) => {
         )}
         {user.id && (
           <Link to="/">
-            <button onClick={logoutUser} />
+            <button onClick={logoutUser}>Log Out</button>
           </Link>
         )}
       </nav>

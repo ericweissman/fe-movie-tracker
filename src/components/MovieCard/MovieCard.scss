@@ -10,9 +10,22 @@
     border-radius: 15px;
   }
   button {
+    background-color: $primary;
+    bottom: 50px;
+    border: none;
+    border-radius: 10px;
     position: relative;
     z-index: 1;
-    bottom: 50px;
+    cursor: pointer;
+    height: 30px;
+    font-family: 'Cereal';
+    font-size: 1rem;
+    text-transform: uppercase;
+    width: 300px;
+
+    &:hover {
+      border: 2px solid blue;
+    }
   }
 }
 

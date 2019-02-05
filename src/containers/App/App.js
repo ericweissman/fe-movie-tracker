@@ -7,10 +7,10 @@ import '../../index.scss'
 import { apiKey } from '../../utils/apiKey'
 import { fetchData } from '../../api/api'
 import { getMovies, logoutUser } from '../../actions'
-import { Header } from '../Header/Header'
+import { Header } from '../../components/Header/Header'
 import MovieArea from '../MovieArea/MovieArea'
-import MovieDetails from '../MovieDetails/MovieDetails'
-import Login from '../Login/Login'
+import MovieDetails from '../../components/MovieDetails/MovieDetails'
+import Login from '../../containers/Login/Login'
 import CreateUser from '../CreateUser/CreateUser'
 
 export class App extends Component {
@@ -32,7 +32,7 @@ export class App extends Component {
       })
       this.props.getMovies(movies)
     } catch (error) {
-      // console.log(error)
+      console.log(error)
     }
   }
 

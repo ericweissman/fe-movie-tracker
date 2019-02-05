@@ -17,12 +17,17 @@
   
   button {
     background-color: $primary;
-    background-image: url(./sign-out-alt-solid.svg);
-    background-repeat: no-repeat;
     border: none;
     cursor: pointer;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    font-family: 'Cereal';
+    font-size: 1rem;
+    text-transform: uppercase;
+    width: 100px;
+
+    &:hover {
+      color: blue;
+    }
   }
   
   .nav {
