@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from "prop-types"
 
 const MovieDetails = ({ title, poster_path, release_date, vote_average, overview }) => {
   const movieImageUrl = "https://image.tmdb.org/t/p/w500"

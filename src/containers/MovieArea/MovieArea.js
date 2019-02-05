@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types"
 import { connect } from "react-redux";
-import MovieCard from "../MovieCard/MovieCard";
+import MovieCard from '../../components/MovieCard/MovieCard';
 import { populateFavorites } from "../../actions";
 import { postData, deleteData } from "../../api/api";
 import { getFavorites } from "../../utils/helper";
