@@ -1,7 +1,8 @@
 .movie-area {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   align-items: center;
   justify-items: center;
-  grid-gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: $primary;
 }
