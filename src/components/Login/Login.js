@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
+import PropTypes from "prop-types";
 import { connect } from 'react-redux'
 import { loginUser, populateFavorites } from '../../actions';
 import { postData } from '../../api/api'
 import { Redirect, Link } from 'react-router-dom';
 import { getFavorites } from '../../utils/helper'
-import { MovieArea } from '../MovieArea/MovieArea';
+
 
 export class Login extends Component {
   constructor(props) {
@@ -84,3 +85,8 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(null, mapDispatchToProps)(Login)
+
+Login.propTypes = {
+  populateFavorites: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired
+}

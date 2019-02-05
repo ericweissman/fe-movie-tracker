@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types"
 import { postData } from "../../api/api";
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
@@ -89,3 +90,8 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(null, mapDispatchToProps)(CreateUser)
+
+CreateUser.propTypes = {
+  populateFavorites: PropTypes.func,
+  loginUser: PropTypes.func
+}

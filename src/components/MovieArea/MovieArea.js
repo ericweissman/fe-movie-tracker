@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import MovieCard from "../MovieCard/MovieCard";
 import { populateFavorites } from "../../actions";
@@ -87,7 +88,11 @@ export const mapDispatchToProps = dispatch => ({
   populateFavorites: favorites => dispatch(populateFavorites(favorites))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MovieArea);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieArea);
+
+
+MovieArea.propTypes = {
+  populateFavorites: PropTypes.func,
+  movies: PropTypes.array,
+  user: PropTypes.object
+}
