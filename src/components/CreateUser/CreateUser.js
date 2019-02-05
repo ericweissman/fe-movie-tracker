@@ -46,18 +46,40 @@ export class CreateUser extends Component {
   render() {
     const { name, email, password, passwordCheck, status } = this.state;
     return (
-      <form onSubmit={this.submitForm}>
-        <h2>Create account</h2>
-        <input onChange={this.handleChange} name="name" value={name} placeholder='name'/>
-        <input onChange={this.handleChange} name="email" value={email} placeholder='email'/>
-        <input onChange={this.handleChange} type='password' name="password" value={password} placeholder='password'/>
-        <input onChange={this.handleChange} type='password' name="passwordCheck" value={passwordCheck} placeholder='confirm password'/>
-        {password !== passwordCheck && <p>Passwords do not match</p> }
-        {status === 'error' && <p>Email is taken</p>}
-        {status === 'success' && <Redirect to='/' />}
+      <form onSubmit={this.submitForm} className="createUser-form">
+        <h2>Create Account</h2>
+        <input
+          onChange={this.handleChange}
+          name="name"
+          value={name}
+          placeholder="name"
+        />
+        <input
+          onChange={this.handleChange}
+          name="email"
+          value={email}
+          placeholder="email"
+        />
+        <input
+          onChange={this.handleChange}
+          type="password"
+          name="password"
+          value={password}
+          placeholder="password"
+        />
+        <input
+          onChange={this.handleChange}
+          type="password"
+          name="passwordCheck"
+          value={passwordCheck}
+          placeholder="confirm password"
+        />
+        {password !== passwordCheck && <p>Passwords do not match</p>}
+        {status === "error" && <p>Email is taken</p>}
+        {status === "success" && <Redirect to="/" />}
         <button>SUBMIT</button>
       </form>
-    );
+    )
   }
 }
 

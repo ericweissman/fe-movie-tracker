@@ -7,9 +7,37 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
+  margin: 0 15px;
   font-family: 'Cereal';
   text-transform: uppercase;
 }
+
+
+
+  
+  h1 {
+    color: #1f1f1f;
+  }
+
+  button {
+    background-image: url(./sign-out-alt-solid.svg);
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+  }
+
+  .nav {
+    color: #1f1f1f;
+    margin: 0 7px;
+    text-decoration: none;
+
+    &:hover {
+      color: blue;
+    }
+  }
+
 
 @media only screen and (max-width: 425px) {
   .header {
@@ -25,5 +53,4 @@
     flex-direction: column;
     font-size: 14px;
   }
-
 }
