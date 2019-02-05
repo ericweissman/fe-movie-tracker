@@ -34,4 +34,5 @@ ENTER GIF HERE
 
 ## Contributors
 [Hillary Stewart](https://github.com/hillstew)
+
 [Eric Weissman](https://github.com/ericweissman)
