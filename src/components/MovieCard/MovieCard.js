@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 
 const MovieCard = ({ movie, user, handleDelete, handleFavorite }) => {
@@ -25,3 +26,11 @@ const MovieCard = ({ movie, user, handleDelete, handleFavorite }) => {
 }
 
 export default MovieCard
+
+
+MovieCard.propTypes = {
+  handleDelete: PropTypes.func.isRequired,
+  handleFavorite: PropTypes.func.isRequired,
+  movies: PropTypes.array,
+  user: PropTypes.object.isRequired
+}

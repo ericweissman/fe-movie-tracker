@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from "prop-types"
 import { NavLink, Link } from 'react-router-dom'
 
 export const Header = ({ logoutUser, user }) => {
@@ -37,4 +38,9 @@ export const Header = ({ logoutUser, user }) => {
       </nav>
     </header>
   )
+}
+
+Header.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  user: PropTypes.object
 }
