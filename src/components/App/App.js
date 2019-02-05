@@ -14,9 +14,6 @@ import Login from '../Login/Login'
 import CreateUser from '../CreateUser/CreateUser'
 
 export class App extends Component {
-  // constructor() {
-  //   super()
-  // }
 
   componentDidMount = async () => {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`

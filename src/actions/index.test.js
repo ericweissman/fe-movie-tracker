@@ -47,5 +47,5 @@ describe('actions', () => {
     }
     const result = actions.populateFavorites(favorites)
     expect(result).toEqual(expected)
-  })
-})
+  });
+});

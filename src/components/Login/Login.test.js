@@ -2,24 +2,15 @@ import { Login, mapDispatchToProps } from './Login'
 import React from 'react'
 import { shallow } from 'enzyme';
 import { loginUser, populateFavorites } from '../../actions';
-// import { postData } from '../../api/api';
 import * as api from '../../api/api';
-// import { getFavorites } from '../../utils/helper'
 import * as helpers from '../../utils/helper'
 
 jest.mock('../../api/api')
-// jest.mock('../../utils/helper')
-// jest.mock('../../actions')
-// loginUser = jest.fn();
 const loginUserMock = jest.fn();
 const mockFavoriteIDs = [2, 3]
-// getFavorites = jest.fn().mockImplementation(() => Promise.resolve(
-//   mockFavoriteIDs
-// ))
 const populateFavoritesMock = jest.fn().mockImplementation(() => Promise.all(
   mockFavoriteIDs
 ))
-
 
 
 describe('Login', () => {
@@ -69,10 +60,6 @@ describe('Login', () => {
       const mockEvent = { preventDefault: jest.fn() }
       await wrapper.instance().handleSubmit(mockEvent)
       expect(wrapper.instance().props.loginUser).toHaveBeenCalledWith(mockCurrentUser)
-    });
-
-    it('should set state with the correct status', () => {
-
     });
   })
 

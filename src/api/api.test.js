@@ -3,6 +3,7 @@ import { fetchData, postData, deleteData } from "./api";
 describe("api", () => {
   let mockURL;
   let mockData;
+
   describe("fetchData", () => {
     beforeEach(() => {
       window.fetch = jest.fn();
@@ -75,11 +76,6 @@ describe("api", () => {
     })
 
     it('should return data if response is ok', async () => {
-      // mock out a successful fetch call, store results in a variable
-      // make sure results equal our expected
-      // expected will be mockData
-
-      //setup
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         ok: true, 
         json: () => Promise.resolve(mockData)
@@ -118,13 +114,6 @@ describe("api", () => {
         }
       }
     });
-    // it('should call fetch with the correct params', () => {
-    //   deleteData(mockSuffix, mockData)
-
-    //   const result = (window.fetch)
-    //   expect(result).toHaveBeenCalledWith(mockUrl, mockOptions)
-
-    // })
 
     it('should return the correct data if everything is ok', async () => {
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
@@ -145,6 +134,4 @@ describe("api", () => {
         await expect(deleteData(mockSuffix, mockData)).rejects.toEqual(expectedError)
     })
   });
-
-
 });
