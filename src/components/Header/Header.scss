@@ -10,3 +10,20 @@
   font-family: 'Cereal';
   text-transform: uppercase;
 }
+
+@media only screen and (max-width: 425px) {
+  .header {
+    flex-direction: column;
+  }
+
+  h1 {
+    margin-bottom: 5px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+  }
+
+}
