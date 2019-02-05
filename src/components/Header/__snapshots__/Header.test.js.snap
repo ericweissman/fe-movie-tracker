@@ -1,80 +1,93 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header should match the correct snapshot when there is a user in the store 1`] = `
-<header>
-  <NavLink
-    activeClassName="active"
-    aria-current="page"
+<header
+  className="header"
+>
+  <Link
     className="nav"
+    replace={false}
     to="/"
   >
-    Show All Movies
-  </NavLink>
-  <NavLink
-    activeClassName="active"
-    aria-current="page"
-    className="nav"
-    to="/login"
-  >
-    Login
-  </NavLink>
-  <NavLink
-    activeClassName="active"
-    aria-current="page"
-    className="nav"
-    to="/signup"
-  >
-    Signup
-  </NavLink>
-  <NavLink
-    activeClassName="active"
-    aria-current="page"
-    className="nav"
-    to="/favorites"
-  >
-    View Favorites
-  </NavLink>
-  <button
-    onClick={[MockFunction]}
-  >
-    LOG OUT
-  </button>
+    <h1>
+      Movie Tracker
+    </h1>
+  </Link>
+  <nav>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav"
+      to="/"
+    >
+      Show All Movies
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav"
+      to="/favorites"
+    >
+      View Favorites
+    </NavLink>
+    <Link
+      replace={false}
+      to="/"
+    >
+      <button
+        onClick={[MockFunction]}
+      />
+    </Link>
+  </nav>
 </header>
 `;
 
 exports[`Header should match the correct snapshot when there is not a user in the store 1`] = `
-<header>
-  <NavLink
-    activeClassName="active"
-    aria-current="page"
+<header
+  className="header"
+>
+  <Link
     className="nav"
+    replace={false}
     to="/"
   >
-    Show All Movies
-  </NavLink>
-  <NavLink
-    activeClassName="active"
-    aria-current="page"
-    className="nav"
-    to="/login"
-  >
-    Login
-  </NavLink>
-  <NavLink
-    activeClassName="active"
-    aria-current="page"
-    className="nav"
-    to="/signup"
-  >
-    Signup
-  </NavLink>
-  <NavLink
-    activeClassName="active"
-    aria-current="page"
-    className="nav"
-    to="/favorites"
-  >
-    View Favorites
-  </NavLink>
+    <h1>
+      Movie Tracker
+    </h1>
+  </Link>
+  <nav>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav"
+      to="/"
+    >
+      Show All Movies
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav"
+      to="/login"
+    >
+      Login
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav"
+      to="/signup"
+    >
+      Signup
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav"
+      to="/login"
+    >
+      View Favorites
+    </NavLink>
+  </nav>
 </header>
 `;
