@@ -23,10 +23,10 @@ const MovieDetails = ({ title, poster_path, release_date, vote_average, overview
 
 export default MovieDetails;
 
-// MovieDetails.propTypes = {
-//   title: PropTypes.string,
-//   poster_path: PropTypes.string,
-//   release_date: PropTypes.string,
-//   vote_average: PropTypes.number,
-//   overview: PropTypes.string.isRequired
-// }
+MovieDetails.propTypes = {
+  title: PropTypes.string,
+  poster_path: PropTypes.string,
+  release_date: PropTypes.string,
+  vote_average: PropTypes.number,
+  overview: PropTypes.string.isRequired
+}
