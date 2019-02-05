@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetails should match the correct snapshot 1`] = `
+<div
+  className="movie-details"
+>
+  <div
+    className="movie-details-card"
+  >
+    <div
+      className="title-area"
+    >
+      <h3 />
+      <img
+        alt="movie poster"
+        src="https://image.tmdb.org/t/p/w500undefined"
+      />
+    </div>
+    <div
+      className="details"
+    >
+      <p
+        className="overview"
+      >
+         
+        <span>
+          Synopsis:
+        </span>
+         
+      </p>
+      <p>
+        <span>
+          Released:
+        </span>
+         
+      </p>
+      <p>
+        <span>
+          Average Score:
+        </span>
+         
+      </p>
+    </div>
+  </div>
+</div>
+`;

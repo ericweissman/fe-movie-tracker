@@ -11,10 +11,10 @@ const MovieCard = ({ movie, user, handleDelete, handleFavorite }) => {
         <img src={movieImageUrl + poster_path} alt="movie poster" />
       </Link>
       {user.id && user.favorites.includes(movie_id) && (
-        <button onClick={() => handleDelete(movie, user)}>DELETE</button>
+        <button className='delete' onClick={() => handleDelete(movie, user)}>DELETE</button>
       )}
       {user.id && !user.favorites.includes(movie_id) && (
-        <button onClick={() => handleFavorite(movie, user)}>FAVORITE</button>
+        <button className='favorite' onClick={() => handleFavorite(movie, user)}>FAVORITE</button>
       )}
       {!user.id && (
         <Link to="/login">

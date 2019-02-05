@@ -5,7 +5,9 @@ import { NavLink, Link } from 'react-router-dom'
 export const Header = ({ logoutUser, user }) => {
   return (
     <header className="header">
-      <h1>Movie Tracker</h1>
+      <Link to='/' className='nav'>
+        <h1>Movie Tracker</h1>
+        </Link>
       <nav>
         <NavLink to="/" className="nav">
           Show All Movies
@@ -41,6 +43,6 @@ export const Header = ({ logoutUser, user }) => {
 }
 
 Header.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func,
   user: PropTypes.object
 }

@@ -76,7 +76,7 @@ export class CreateUser extends Component {
           placeholder="confirm password"
         />
         {password !== passwordCheck && <p>Passwords do not match</p>}
-        {status === "error" && <p>Email is taken</p>}
+        {status === "error" && <p>Sorry! This email is already taken.</p>}
         {status === "success" && <Redirect to="/" />}
         <button>SUBMIT</button>
       </form>
