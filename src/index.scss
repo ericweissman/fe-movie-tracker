@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import '/variables';
 @import "./components/MovieCard/MovieCard";
 @import './components/CreateUser/CreateUser';
 @import './components/Header/Header';
@@ -5,7 +7,11 @@
 @import './components/Login/Login';
 @import './components/MovieDetails/MovieDetails';
 
+
 * {
   box-sizing: border-box;
 }
 
+body {
+ background-color: $primary;
+}
