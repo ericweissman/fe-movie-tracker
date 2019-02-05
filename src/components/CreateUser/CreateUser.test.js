@@ -15,7 +15,23 @@ describe('CreateUser', () => {
     wrapper.setProps({loginUser: jest.fn(() => 'success')})
   });
 
-  it('should match the correct snapshot', () => {
+  it('should match the correct snapshot with the defaul state', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match the correct snapshot if the passwords do not match', () => {
+    wrapper.setState({password: 'a'})
+    wrapper.setState({password: 'b'})
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match the correct snapshot if the the status comes back as error', () => {
+    wrapper.setState({status: 'error'});
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match the correct snapshot if status is a success', () => {
+        wrapper.setState({status: 'success'});
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -52,15 +68,15 @@ describe('CreateUser', () => {
 
     wrapper.setState(expectedState)
     wrapper.find('form').simulate('submit', mockEvent);
-    await expect(api.postData).toHaveBeenCalledWith(param1, param2)
+    await expect(api.postData).toHaveBeenCalledWith(param1, param2);
+    await expect(wrapper.state('status')).toEqual('success');
   })
 
-  it.skip('should call loginUser with the correct params', async () => {
-    //can't get to this level - only reads the first await postData
+  it('should call loginUser with the correct params', async () => {
     const mockUser = {name: mockData.data.name, id: mockData.data.id, favorites: []};
     const mockEvent = { preventDefault: jest.fn() };
-    wrapper.find('form').simulate('submit', mockEvent);
-    await expect(api.postData).toHaveBeenCalledWith(mockUser)
+    await wrapper.instance().submitForm(mockEvent);
+    expect(wrapper.instance().props.loginUser).toHaveBeenCalledWith(mockUser);
   })
 
   describe('mapDispatchToProps', () => {

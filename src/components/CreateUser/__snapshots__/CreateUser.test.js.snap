@@ -1,11 +1,142 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CreateUser should match the correct snapshot 1`] = `
+exports[`CreateUser should match the correct snapshot if status is a success 1`] = `
 <form
+  className="createUser-form"
   onSubmit={[Function]}
 >
   <h2>
-    Create account
+    Create Account
+  </h2>
+  <input
+    name="name"
+    onChange={[Function]}
+    placeholder="name"
+    value=""
+  />
+  <input
+    name="email"
+    onChange={[Function]}
+    placeholder="email"
+    value=""
+  />
+  <input
+    name="password"
+    onChange={[Function]}
+    placeholder="password"
+    type="password"
+    value=""
+  />
+  <input
+    name="passwordCheck"
+    onChange={[Function]}
+    placeholder="confirm password"
+    type="password"
+    value=""
+  />
+  <Redirect
+    push={false}
+    to="/"
+  />
+  <button>
+    SUBMIT
+  </button>
+</form>
+`;
+
+exports[`CreateUser should match the correct snapshot if the passwords do not match 1`] = `
+<form
+  className="createUser-form"
+  onSubmit={[Function]}
+>
+  <h2>
+    Create Account
+  </h2>
+  <input
+    name="name"
+    onChange={[Function]}
+    placeholder="name"
+    value=""
+  />
+  <input
+    name="email"
+    onChange={[Function]}
+    placeholder="email"
+    value=""
+  />
+  <input
+    name="password"
+    onChange={[Function]}
+    placeholder="password"
+    type="password"
+    value="b"
+  />
+  <input
+    name="passwordCheck"
+    onChange={[Function]}
+    placeholder="confirm password"
+    type="password"
+    value=""
+  />
+  <p>
+    Passwords do not match
+  </p>
+  <button>
+    SUBMIT
+  </button>
+</form>
+`;
+
+exports[`CreateUser should match the correct snapshot if the the status comes back as error 1`] = `
+<form
+  className="createUser-form"
+  onSubmit={[Function]}
+>
+  <h2>
+    Create Account
+  </h2>
+  <input
+    name="name"
+    onChange={[Function]}
+    placeholder="name"
+    value=""
+  />
+  <input
+    name="email"
+    onChange={[Function]}
+    placeholder="email"
+    value=""
+  />
+  <input
+    name="password"
+    onChange={[Function]}
+    placeholder="password"
+    type="password"
+    value=""
+  />
+  <input
+    name="passwordCheck"
+    onChange={[Function]}
+    placeholder="confirm password"
+    type="password"
+    value=""
+  />
+  <p>
+    Sorry! This email is already taken.
+  </p>
+  <button>
+    SUBMIT
+  </button>
+</form>
+`;
+
+exports[`CreateUser should match the correct snapshot with the defaul state 1`] = `
+<form
+  className="createUser-form"
+  onSubmit={[Function]}
+>
+  <h2>
+    Create Account
   </h2>
   <input
     name="name"
