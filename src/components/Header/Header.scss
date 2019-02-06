@@ -5,19 +5,24 @@
 
 .header {
   align-items: center;
+  background-color: $accent;
   display: flex;
   justify-content: space-between;
-  margin: 0 15px;
   font-family: 'Cereal';
   text-transform: uppercase;
+  box-shadow: 7px 7px 5px -5px rgba(0,0,0,0.31);
+
 
   h1 {
-    color: #1f1f1f;
+    color: $primary;
+    margin: 10px 15px;
+    font-size: 35px;
   }
   
   button {
     background-color: $primary;
     border: none;
+    outline: none;
     cursor: pointer;
     height: 30px;
     font-family: 'Cereal';
@@ -31,12 +36,12 @@
   }
   
   .nav {
-    color: #1f1f1f;
+    color: $text;
     margin: 0 7px;
     text-decoration: none;
   
     &:hover {
-      color: blue;
+      color: $primary;
     }
   }
 }
