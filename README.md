@@ -19,7 +19,7 @@ The application fetches data from The Movie Database API and dispalys the result
 - Enzyme
 
 ## Screenshots & Wireframes
-ENTER GIF HERE
+![forgif](https://user-images.githubusercontent.com/20710327/52348152-ddac9900-29e0-11e9-9b62-518803210832.gif)
 
 ##### Main/Home Screen
 <img width="533" alt="screen shot 2019-02-04 at 7 36 11 pm" src="https://user-images.githubusercontent.com/20710327/52250250-2d417680-28b4-11e9-950b-922f992bf938.png">
