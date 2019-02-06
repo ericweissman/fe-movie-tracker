@@ -7,15 +7,21 @@
 
 .movie-details-card {
   display: grid;
+  color: $primary;
+  background-color: $accent;
   grid-template-columns: 1fr 2fr;
   font-family: 'Roboto', sans-serif;
-  border: 3px solid;
   border-radius: 10px;
+  box-shadow: 7px 7px 5px -5px rgba(0,0,0,0.31);
   width: 1000px;
+  margin-top: 15px;
+  
   span {
+    color: $text;
     font-weight: 600;
   }
   h3 {
+    font-family: 'Cereal';
     font-size: 30px;
     margin: 15px 0px;
   }

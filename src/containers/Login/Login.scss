@@ -4,16 +4,26 @@
 }
 
 .login-form {
+  color: $text;
   align-items: center;
-  border: 2px solid rgb(242, 242, 242);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   margin: 100px auto;
   width: 400px;
+  background-color: $accent;
+  box-shadow: 7px 7px 5px -5px rgba(0,0,0,0.31);
+
+
 
   h2 {
     font-family: 'Cereal'
+  }
+
+  p {
+    font-family: 'Roboto';
+    color: $primary;
+    text-transform: uppercase;
   }
 
   input {
@@ -23,26 +33,38 @@
     margin-bottom: 15px;
     padding-left: 5px;
     width: 200px;
+    outline: none;
   }
 
   button {
     border: none;
+    outline: none;
+    color: $text;
     border-radius: 10px;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     height: 30px;
     margin-bottom: 15px;
-    transition-duration: 1s;
+    font-weight: 600;
     width: 100px;
+    transition-duration: .15s;
+
 
     &:hover {
-      background-color: tomato;
+      background-color: $text;
+      color: $primary;
     }
   }
 
   .link {
     font-family: 'Roboto', sans-serif;
     margin-bottom: 15px;
+  }
+}
+
+@media only screen and (max-width: 449px) {
+  .login-form {
+    width: 285px
   }
 }
