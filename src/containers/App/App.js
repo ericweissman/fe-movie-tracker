@@ -18,7 +18,6 @@ export class App extends Component {
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
     try {
       let movies = await fetchData(url)
-      console.log(movies)
       movies = movies.results.map((movie) => {
         return {
           movie_id: movie.id,
