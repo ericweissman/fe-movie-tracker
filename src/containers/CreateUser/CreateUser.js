@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { postData } from "../../api/api";
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { loginUser, populateFavorites } from '../../actions';
 
 export class CreateUser extends Component {

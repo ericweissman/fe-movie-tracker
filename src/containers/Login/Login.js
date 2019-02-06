@@ -1,11 +1,10 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import PropTypes from "prop-types";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { loginUser, populateFavorites } from '../../actions';
-import { postData } from '../../api/api'
+import { postData } from '../../api/api';
 import { Redirect, Link } from 'react-router-dom';
-import { getFavorites } from '../../utils/helper'
-
+import { getFavorites } from '../../utils/helper';
 
 export class Login extends Component {
   constructor(props) {

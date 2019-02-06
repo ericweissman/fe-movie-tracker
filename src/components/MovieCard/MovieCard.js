@@ -29,8 +29,8 @@ export default MovieCard
 
 
 MovieCard.propTypes = {
-  handleDelete: PropTypes.func.isRequired,
-  handleFavorite: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func,
+  handleFavorite: PropTypes.func,
   movies: PropTypes.array,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object
 }
