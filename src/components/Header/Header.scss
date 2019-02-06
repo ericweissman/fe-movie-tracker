@@ -27,14 +27,19 @@
     font-size: 1rem;
     text-transform: uppercase;
     width: 100px;
+    border-radius: 10px;
+    margin: 15px;
 
     &:hover {
-      color: blue;
+      color: $primary;
+      background-color: $text;
     }
   }
 
   nav {
     margin-right: 15px;
+    display: flex;
+    align-items: center;
   }
   
   .nav {
@@ -52,18 +57,16 @@
   .header {
     flex-direction: column;
 
-  h1 {
-    margin: 15px 0 0 0;
-  }
+    h1 {
+      margin: 15px 0 0 0;
+    }
+
     nav {
     display: flex;
     flex-direction: column;
     margin: 15px 0;
+    }
   }
-  }
-
-
-
 }
 
   
@@ -77,9 +80,16 @@
       font-size: 28px;
     }
 
+    button {
+      margin: 10px 0;
+      font-size: 14px;
+      width: 85px;
+    }
+
     nav {
       margin: 5px 0;
       font-size: 14px;
+      width: 160px;
     }
   }
 }
