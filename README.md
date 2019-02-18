@@ -2,7 +2,8 @@
 #### MovieTracker is a React app that utilizes Redux and React Router to create a engaging interface for users to view and favorite the newest movies out there! 
 
 ## Installation Steps
-- Clone the repo: ```https://github.com/hillstew/fe-movie-tracker.git```
+- Clone down the backend repo : ```https://github.com/turingschool-examples/movie-tracker.git``` and run ```npm install```
+- Clone this repo: ```https://github.com/hillstew/fe-movie-tracker.git```
 - Install dependencies: ```npm install```
 - Start Local Host: ```npm start```
 - For testing suite: ```npm test```
